@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+
 let shell = require('shelljs')
 let colors = require('colors')
 let fs = require('fs')
@@ -7,34 +8,29 @@ let templates = require('./templates/templates.js')
 
 let appName = process.argv[2]
 let appDirectory = `${process.cwd()}/${appName}`
+let appNumber = Math.floor(Math.random() * 100000);
+
+console.log(appNumber)
 
 const createReactApp = () => {
   return new Promise(resolve=>{
     if(appName){
       shell.exec(`create-react-app ${appName}`, () => {
-        console.log(`${appName} app created`)
+        console.log(`${appName} app created in ${appDirectory}`)
         resolve(true)
       })
     }else{
-      console.log("\nNo app name was provided.".red)
-      console.log("\nProvide an app name in the following format: ")
+      console.log("\nProvide an app name in the following format: ".red)
       console.log("\nreact-to-heroku ", "app-name\n".cyan)
         resolve(false)
     }
   })
 }
 
-const cdIntoNewApp = () => {
-  return new Promise(resolve=>{
-    shell.exec(`cd ${appName}`, ()=>{resolve()})
-  })
-}
-
 const installPackages = () => {
   return new Promise(resolve=>{
     console.log("\nInstalling packages...\n".cyan)
-    shell.exec(`npm install --save redux react-router react-redux redux-thunk react-router-dom`, () => {
-      console.log("\nFinished installing packages\n".green)
+    shell.exec(`cd ${appName} && npm install --save redux react-router react-redux redux-thunk react-router-dom`, () => {
       resolve()
     })
   })
@@ -58,42 +54,35 @@ const updateTemplates = () => {
 const gitInit = () => {
   return new Promise(resolve=>{
     console.log("\nInitialising Git...\n".cyan)
-    shell.exec(`git init`, () => {
-      console.log("\nGit initialised\n".green)
+    shell.exec(`cd ${appName} && git init`, () => {
       resolve()
     })
-    Promise.all(promises).then(()=>{resolve()})
   })
 }
 
 const createHeroku = () => {
   return new Promise(resolve=>{
     console.log("\nCreating app in Heroku...\n".cyan)
-    shell.exec(`heroku create -b https://github.com/heroku/heroku-buildpack-static.git`, () => {
-      console.log("\nHeroku app created\n".green)
-      resolve()
+    shell.exec(`cd ${appName} && heroku create ${appName}-${appNumber} -b https://github.com/heroku/heroku-buildpack-static.git`, () => {
+      resolve(true)
     })
-    Promise.all(promises).then(()=>{resolve()})
   })
 }
 
 const updateFiles = () => {
   return new Promise(resolve=>{
-    shell.exec(`echo '{ "root": "build/" }' > static.json && sed '/build/d' .gitignore > .gitignore.new && mv .gitignore.new .gitignore`, () => {
+    shell.exec(`cd ${appName} && echo '{ "root": "build/" }' > static.json && sed '/build/d' .gitignore > .gitignore.new && mv .gitignore.new .gitignore`, () => {
       resolve()
     })
-    Promise.all(promises).then(()=>{resolve()})
   })
 }
 
 const firstBuild = () => {
   return new Promise(resolve=>{
     console.log("\nStarting first build...\n".cyan)
-    shell.exec(`npm run build`, () => {
-      console.log("\nApp built successfully\n".green)
+    shell.exec(`cd ${appName} && npm run build`, () => {
       resolve()
     })
-    Promise.all(promises).then(()=>{resolve()})
   })
 }
 
@@ -101,11 +90,9 @@ const firstBuild = () => {
 const deployToHeroku = () => {
   return new Promise(resolve=>{
     console.log("\nDeploying to Heroku...\n".cyan)
-    shell.exec(`git add . && git commit -m "initial commit" && git push heroku master && heroku open`, () => {
-      console.log("\nSuccessfully deployed\n".green)
+    shell.exec(`cd ${appName} && git add . && git commit -m "initial commit" && git push heroku master && heroku open`, () => {
       resolve()
     })
-    Promise.all(promises).then(()=>{resolve()})
   })
 }
 
@@ -115,18 +102,15 @@ const run = async () => {
     console.log('Couldn\'t create this app in React.'.red)
     return false;
   }
-  await cdIntoNewApp()
   await installPackages()
   await updateTemplates()
   await gitInit()
-  let herokuSuccess = await createHeroku()
-  if (!herokuSuccess){
-    console.log('Couldn\'t create this app in Heroku. Try again with a different project name.'.red)
-    return false;
-  }
+  await createHeroku()
   await updateFiles()
   await firstBuild()
   await deployToHeroku()
-  console.log("All done")
+  console.log(`Congratulations! ${appName} is set up and deployed!`)
 }
-run() 
+
+run()
+ 
