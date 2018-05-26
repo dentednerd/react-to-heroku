@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-
 let shell = require('shelljs')
 let colors = require('colors')
 let fs = require('fs')
@@ -9,8 +8,6 @@ let templates = require('./templates/templates.js')
 let appName = process.argv[2]
 let appDirectory = `${process.cwd()}/${appName}`
 let appNumber = Math.floor(Math.random() * 100000);
-
-console.log(appNumber)
 
 const createReactApp = () => {
   return new Promise(resolve=>{
@@ -113,4 +110,3 @@ const run = async () => {
 }
 
 run()
- 
