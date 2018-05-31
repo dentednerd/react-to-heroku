@@ -9,6 +9,15 @@ let appName = process.argv[2]
 let appDirectory = `${process.cwd()}/${appName}`
 let appNumber = Math.floor(Math.random() * 100000);
 
+const installTools = () => {
+  return new Promise(resolve=>{
+    console.log("\nInstalling create-react-app and heroku...\n".cyan)
+    shell.exec(`npm install -g create-react-app heroku`, () => {
+      resolve()
+    })
+  })
+}
+
 const createReactApp = () => {
   return new Promise(resolve=>{
     if(appName){
@@ -94,6 +103,7 @@ const deployToHeroku = () => {
 }
 
 const run = async () => {
+  await installTools()
   let craSuccess = await createReactApp()
   if(!craSuccess){
     console.log('Couldn\'t create this app in React.'.red)

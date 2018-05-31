@@ -1,14 +1,14 @@
 {
   "name": "react-to-heroku",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Automatically creates a React app with Redux packages and deploys to Heroku.",
   "author": "Jo Imlay / dentednerd",
   "license": "ISC",
   "main": "index.js",
   "homepage": "https://github.com/dentednerd/react-to-heroku#readme",
-  "repository" : { 
-    "type" : "git", 
-    "url" : "https://github.com/dentednerd/react-to-heroku.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dentednerd/react-to-heroku.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
