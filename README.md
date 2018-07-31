@@ -17,5 +17,4 @@ react-to-heroku my-app
 
 ## To do
 
-- restyle the resulting default app
-- look at React Helmet for changing page title in browser?
+- update readme template
