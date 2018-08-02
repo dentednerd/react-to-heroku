@@ -1,4 +1,4 @@
-import React from 'react';
+module.exports = `import React from 'react';
 import { Helmet } from 'react-helmet';
 
 const App = () => {
@@ -30,3 +30,4 @@ const App = () => {
 };
 
 export default App;
+`;
