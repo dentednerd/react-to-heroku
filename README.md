@@ -1,8 +1,8 @@
 # react-to-heroku
 
-Sets up a React app with Redux packages and deploys to Heroku.
+Sets up a React app and deploys to Heroku with zero configuration.
 
-Ideal for quickly getting a project started with zero configuration needed.
+Ideal for developers new to React wishing to quickly get a project started.
 
 Inspired by [Mars Hall](https://gist.github.com/mars/5e01bb2a074594b44870cb087f54fe2f), [Chris Patty](https://blog.cloudboost.io/extending-create-react-app-to-make-your-own-app-generator-5d7b1ddc246), and [simple-react-app](https://github.com/Kornil/simple-react-app).
 
