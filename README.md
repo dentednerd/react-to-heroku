@@ -8,6 +8,16 @@ Inspired by [Mars Hall](https://gist.github.com/mars/5e01bb2a074594b44870cb087f5
 
 Requires a Heroku account.
 
+## Prerequisites
+
+You must have a Heroku account, and to have installed the appropriate version of the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) for your operating system.
+
+You will also need to have installed create-react-app before launching:
+
+```bash
+npm install -g create-react-app
+```
+
 ## Installation and launch
 
 ```sh
@@ -18,3 +28,4 @@ react-to-heroku my-app
 ## To do
 
 - update readme template
+- implement Jest
