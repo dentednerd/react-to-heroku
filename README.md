@@ -10,7 +10,7 @@ Requires a Heroku account.
 
 ## Prerequisites
 
-You must have a Heroku account, and to have installed the appropriate version of the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) for your operating system.
+You must have a Heroku account, to have installed the appropriate version of the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) for your operating system, and to have logged into your Heroku account using `heroku login`.
 
 You will also need to have installed create-react-app before launching:
 
