@@ -2,6 +2,7 @@ const fs = require('fs');
 const { exec } = require('child_process');
 const colors = require('colors');
 const templates = require('./templates/templates.js');
+
 const appName = process.argv[2];
 const appNumber = Math.floor(Math.random() * 100000);
 
@@ -15,13 +16,13 @@ const createApp = () => {
       console.log(colors.cyan('[2/6] Installing dependencies with Yarn...'));
       exec(`cd ${appName} && yarn add react-router-dom react-helmet`, () => {
         console.log(colors.cyan('[3/6] Updating default templates...'));
-        return new Promise(((resolve) => {
+        return new Promise((resolve) => {
           const promises = [];
           Object.keys(templates).forEach((fileName, i) => {
-            promises[i] = new Promise((res) => {
+            promises[i] = new Promise((resolve) => {
               fs.writeFile(`${appName}/src/${fileName}`, templates[fileName], (err) => {
                 if (err) { return console.log(err); }
-                res();
+                resolve();
               });
             });
           });
@@ -37,7 +38,7 @@ const createApp = () => {
               });
             });
           });
-        }));
+        });
       });
     }
   });

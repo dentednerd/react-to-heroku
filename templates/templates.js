@@ -1,6 +1,11 @@
+const App = require('./App.js');
+const indexJs = require('./index.js');
+const README = require('./README.md.js');
+const indexCss = require('./index.css');
+
 module.exports = {
-  'App.js': require('./App.js'),
-  'index.js': require('./index.js'),
-  'README.md': require('./README.md.js'),
-  'index.css': require('./index.css')
+  'App.js': App,
+  'index.js': indexJs,
+  'README.md': README,
+  'index.css': indexCss
 };
