@@ -16,8 +16,3 @@ You must have a Heroku account, to have installed the appropriate version of the
 npm install -g react-to-heroku
 react-to-heroku my-app
 ```
-
-## To do
-
-- update readme template
-- implement Jest
