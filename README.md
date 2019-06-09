@@ -10,12 +10,6 @@ Inspired by [Mars Hall](https://gist.github.com/mars/5e01bb2a074594b44870cb087f5
 
 You must have a Heroku account, to have installed the appropriate version of the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) for your operating system, and to have logged into your Heroku account using `heroku login`.
 
-You will also need to have installed create-react-app before launching:
-
-```bash
-npm install -g create-react-app
-```
-
 ## Installation and launch
 
 ```sh
