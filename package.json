@@ -1,6 +1,6 @@
 {
   "name": "react-to-heroku",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "Creates a React app and deploys to Heroku.",
   "author": "Jo Imlay / dentednerd",
   "license": "ISC",
@@ -10,6 +10,13 @@
     "type": "git",
     "url": "https://github.com/dentednerd/react-to-heroku.git"
   },
+  "keywords": [
+    "react",
+    "create-react-app",
+    "heroku",
+    "automation",
+    "deployment"
+  ],
   "dependencies": {
     "colors": "^1.3.0",
     "eslint": "^5.16.0"
